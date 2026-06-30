@@ -34,22 +34,25 @@ def p_pro(op, x, p, c, t):
         if not os.path.exists(A):
             print("No hay datos registrados.")
             return
-        
         with open(A, "r") as f:
             lineas = f.readlines()
-            
         print("--------------------------------------------------")
         print("PROD | PRECIO | STOCK | CAT | PRECIO FINAL")
         print("--------------------------------------------------")
         for l in lineas:
             datos1 = l.strip().split(",")
-            # Nombres crípticos de variables (datos1, x1, etc.)
             x1 = datos1[0]
             p1 = float(datos1[1])
             c1 = int(datos1[2])
             t1 = datos1[3]
             pf1 = float(datos1[4])
+            
+            # Imprime el producto normal
             print(f"{x1} | ${p1} | {c1} unidades | {t1} | ${pf1}")
+            
+            # ACTIVIDAD 1: Alerta de stock crítico
+            if c1 < 5:
+                print(f"   >>> ¡ALERTA! El producto '{x1}' tiene stock crítico: {c1} unidades.")
         print("--------------------------------------------------")
 
     elif op == 3:
